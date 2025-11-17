@@ -50,6 +50,21 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
+name = "django-extensions"
+version = "4.1"
+description = "Extensions for Django"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "django_extensions-4.1-py3-none-any.whl", hash = "sha256:0699a7af28f2523bf8db309a80278519362cd4b6e1fd0a8cd4bf063e1e023336"},
+    {file = "django_extensions-4.1.tar.gz", hash = "sha256:7b70a4d28e9b840f44694e3f7feb54f55d495f8b3fa6c5c0e5e12bcb2aa3cdeb"},
+]
+
+[package.dependencies]
+django = ">=4.2"
+
+[[package]]
 name = "django-rest-framework"
 version = "0.1.0"
 description = "alias."
@@ -190,6 +205,25 @@ pygments = ">=2.7.2"
 dev = ["argcomplete", "attrs (>=19.2)", "hypothesis (>=3.56)", "mock", "requests", "setuptools", "xmlschema"]
 
 [[package]]
+name = "pytest-django"
+version = "4.11.1"
+description = "A Django plugin for pytest."
+optional = false
+python-versions = ">=3.8"
+groups = ["dev"]
+files = [
+    {file = "pytest_django-4.11.1-py3-none-any.whl", hash = "sha256:1b63773f648aa3d8541000c26929c1ea63934be1cfa674c76436966d73fe6a10"},
+    {file = "pytest_django-4.11.1.tar.gz", hash = "sha256:a949141a1ee103cb0e7a20f1451d355f83f5e4a5d07bdd4dcfdd1fd0ff227991"},
+]
+
+[package.dependencies]
+pytest = ">=7.0.0"
+
+[package.extras]
+docs = ["sphinx", "sphinx_rtd_theme"]
+testing = ["Django", "django-configurations (>=2.0)"]
+
+[[package]]
 name = "sqlparse"
 version = "0.5.3"
 description = "A non-validating SQL parser."
@@ -221,4 +255,4 @@ markers = {main = "sys_platform == \"win32\""}
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "8e2516049649385b80b2cd277ce1d66de4e9e4bd3257e1dd3d113919d62c8434"
+content-hash = "48575592c851f4a929e494451b31d8e6a5a7e8b6955e62a63aa1a69e29f95e7f"
