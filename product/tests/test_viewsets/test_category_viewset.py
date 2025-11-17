@@ -1,6 +1,7 @@
 import pytest
 from rest_framework.test import APIClient
 from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
 
 from product.models.category import Category
 
@@ -11,7 +12,11 @@ def test_category_list_viewset():
 
     # autenticação
     user = User.objects.create_user(username="sidney", password="123456")
-    client.force_authenticate(user=user)
+    # client.force_authenticate(user=user)
+    token = Token.objects.create(user=user)
+
+    # adiciona token no header
+    client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
 
     # dados
     Category.objects.create(title="Romance", slug="romance", description="Livros de romance", active=True)
@@ -22,10 +27,11 @@ def test_category_list_viewset():
     assert response.status_code == 200
 
     data = response.json()
-    assert len(data) == 2
-    assert {c["title"] for c in data} == {"Romance", "Ficção"}
+    assert data["count"] == 2
+    assert len(data["results"]) == 2
+    assert {c["title"] for c in data["results"]} == {"Romance", "Ficção"}
     # confere estrutura
-    for c in data:
+    for c in data["results"]:
         assert set(c.keys()) == {"title", "slug", "description", "active"}
 
 
@@ -33,7 +39,9 @@ def test_category_list_viewset():
 def test_category_create_viewset():
     client = APIClient()
     user = User.objects.create_user(username="sidney", password="123456")
-    client.force_authenticate(user=user)
+    # client.force_authenticate(user=user)
+    token = Token.objects.create(user=user)
+    client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
 
     payload = {
         "title": "Aventura",
@@ -55,7 +63,10 @@ def test_category_create_viewset():
 def test_category_retrieve_viewset():
     client = APIClient()
     user = User.objects.create_user(username="sidney", password="123456")
-    client.force_authenticate(user=user)
+    # client.force_authenticate(user=user)
+    token = Token.objects.create(user=user)
+    client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
+
 
     cat = Category.objects.create(title="Drama", slug="drama", description="Categoria dramática", active=True)
 

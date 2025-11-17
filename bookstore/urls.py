@@ -18,6 +18,7 @@ Including another URLconf
 import debug_toolbar
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
 from product.views import ProductViewSet
 from order.views import OrderViewSet
@@ -32,4 +33,5 @@ urlpatterns = [
     path('__debug__/', include(debug_toolbar.urls)),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api-token-aut/', obtain_auth_token, name='api_token_aut'),
 ]

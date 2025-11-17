@@ -1,6 +1,7 @@
 import pytest
 from rest_framework.test import APIClient
 from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
 from product.models.product import Product
 from product.models.category import Category
 
@@ -10,7 +11,11 @@ def test_product_list_viewset():
 
     # cria usuário e autentica
     user = User.objects.create_user(username="sidney", password="123456")
-    client.force_authenticate(user=user)
+    # client.force_authenticate(user=user)
+    token = Token.objects.create(user=user)
+
+    # adiciona token no header
+    client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
 
     # cria dados
     category = Category.objects.create(title="Romance", slug="romance")
@@ -22,16 +27,20 @@ def test_product_list_viewset():
 
     assert response.status_code == 200
     data = response.json()
-    assert len(data) == 1
-    assert data[0]["title"] == "Livro A"
-    assert data[0]["category"][0]["title"] == "Romance"
+    assert data["count"] == 1
+    assert len(data["results"]) == 1
+    product_data = data["results"][0]
+    assert product_data["title"] == "Livro A"
+    assert product_data["active"] is True
 
 
 @pytest.mark.django_db
 def test_product_create_viewset():
     client = APIClient()
     user = User.objects.create_user(username="sidney", password="123456")
-    client.force_authenticate(user=user)
+    # client.force_authenticate(user=user)
+    token = Token.objects.create(user=user)
+    client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
 
     payload = {
         "title": "Livro B",
