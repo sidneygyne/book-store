@@ -10,12 +10,12 @@ def test_product_list_viewset():
     client = APIClient()
 
     # cria usuário e autentica
-    user = User.objects.create_user(username="sidney", password="123456")
+    # user = User.objects.create_user(username="sidney", password="123456")
     # client.force_authenticate(user=user)
-    token = Token.objects.create(user=user)
+    # token = Token.objects.create(user=user)
 
     # adiciona token no header
-    client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
+    # client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
 
     # cria dados
     category = Category.objects.create(title="Romance", slug="romance")
@@ -37,10 +37,10 @@ def test_product_list_viewset():
 @pytest.mark.django_db
 def test_product_create_viewset():
     client = APIClient()
-    user = User.objects.create_user(username="sidney", password="123456")
+    # user = User.objects.create_user(username="sidney", password="123456")
     # client.force_authenticate(user=user)
-    token = Token.objects.create(user=user)
-    client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
+    # token = Token.objects.create(user=user)
+    # client.credentials(HTTP_AUTHORIZATION="Token " + token.key)
 
     payload = {
         "title": "Livro B",

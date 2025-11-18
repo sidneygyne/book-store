@@ -20,11 +20,17 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
-from product.views import ProductViewSet
 from order.views import OrderViewSet
-from product.viewsets import CategoryViewSet
+from product.views import ProductViewSet, CategoryViewSet
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-router = DefaultRouter()
+class PublicRouter(DefaultRouter):
+    class APIRootView(DefaultRouter.APIRootView):
+        permission_classes = [AllowAny]  
+       
+router = PublicRouter()
 router.register(r'products', ProductViewSet, basename='product')
 router.register(r'orders', OrderViewSet, basename='order')
 router.register(r"categories", CategoryViewSet, basename="category")
