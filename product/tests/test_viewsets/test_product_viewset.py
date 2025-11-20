@@ -5,6 +5,7 @@ from rest_framework.authtoken.models import Token
 from product.models.product import Product
 from product.models.category import Category
 
+
 @pytest.mark.django_db
 def test_product_list_viewset():
     client = APIClient()

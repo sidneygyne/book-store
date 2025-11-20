@@ -11,15 +11,12 @@ def test_product_serializer_with_category():
         title="Romance",
         slug="romance",
         description="Categoria de livros de romance",
-        active=True
+        active=True,
     )
 
     # Cria um produto e associa à categoria
     product = Product.objects.create(
-        title="Livro A",
-        description="Um livro de romance",
-        price=50,
-        active=True
+        title="Livro A", description="Um livro de romance", price=50, active=True
     )
     product.categories.add(category)
 

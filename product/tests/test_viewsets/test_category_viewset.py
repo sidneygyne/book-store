@@ -10,8 +10,12 @@ from product.models.category import Category
 def test_category_list_viewset():
     client = APIClient()
     # dados
-    Category.objects.create(title="Romance", slug="romance", description="Livros de romance", active=True)
-    Category.objects.create(title="Ficção", slug="ficcao", description="Ficção científica", active=True)
+    Category.objects.create(
+        title="Romance", slug="romance", description="Livros de romance", active=True
+    )
+    Category.objects.create(
+        title="Ficção", slug="ficcao", description="Ficção científica", active=True
+    )
 
     # GET
     response = client.get("/api/categories/")
@@ -50,6 +54,8 @@ def test_category_create_viewset():
 def test_category_retrieve_viewset():
     client = APIClient()  # Definindo client aqui
 
-    cat = Category.objects.create(title="Drama", slug="drama", description="Categoria dramática", active=True)
+    cat = Category.objects.create(
+        title="Drama", slug="drama", description="Categoria dramática", active=True
+    )
 
     response = client

@@ -5,6 +5,7 @@ from rest_framework.authtoken.models import Token
 from order.models.order import Order
 from product.models.product import Product
 
+
 @pytest.mark.django_db
 def test_order_create_viewset():
     client = APIClient()
@@ -22,7 +23,7 @@ def test_order_create_viewset():
 
     # payload enviado para criar o pedido
     payload = {
-        "user": user.id,                # id do usuário dono do pedido
+        "user": user.id,  # id do usuário dono do pedido
         "product": [product1.id, product2.id],  # lista de produtos no pedido
     }
 
@@ -34,4 +35,4 @@ def test_order_create_viewset():
 
     # valida dados retornados pela API
     data = response.json()
-    assert data["total"] == 100              # soma dos preços dos produtos
+    assert data["total"] == 100  # soma dos preços dos produtos
