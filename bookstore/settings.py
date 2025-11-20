@@ -67,6 +67,11 @@ DATABASES = {
     }
 }
 
+import inspect
+print(">>> DATABASES type:", type(DATABASES))
+print(">>> DATABASES value:", DATABASES)
+print(">>> Called from:", inspect.stack()[1].filename)
+
 # Validação de senha
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
@@ -102,3 +107,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
 }
+
+
+if isinstance(DATABASES, list):
+    DATABASES = DATABASES[0]
