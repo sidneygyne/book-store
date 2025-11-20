@@ -26,18 +26,20 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+
 class PublicRouter(DefaultRouter):
     class APIRootView(DefaultRouter.APIRootView):
-        permission_classes = [AllowAny]  
-       
+        permission_classes = [AllowAny]
+
+
 router = PublicRouter()
-router.register(r'products', ProductViewSet, basename='product')
-router.register(r'orders', OrderViewSet, basename='order')
+router.register(r"products", ProductViewSet, basename="product")
+router.register(r"orders", OrderViewSet, basename="order")
 router.register(r"categories", CategoryViewSet, basename="category")
 
 urlpatterns = [
-    path('__debug__/', include(debug_toolbar.urls)),
-    path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
-    path('api-token-aut/', obtain_auth_token, name='api_token_aut'),
+    path("__debug__/", include(debug_toolbar.urls)),
+    path("admin/", admin.site.urls),
+    path("api/", include(router.urls)),
+    path("api-token-aut/", obtain_auth_token, name="api_token_aut"),
 ]

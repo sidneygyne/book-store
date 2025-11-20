@@ -9,10 +9,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
     # escrita: permite enviar lista de IDs de categorias
     categories_id = serializers.PrimaryKeyRelatedField(
-        queryset=Category.objects.all(),
-        write_only=True,
-        many=True,
-        required=False
+        queryset=Category.objects.all(), write_only=True, many=True, required=False
     )
 
     class Meta:
@@ -23,8 +20,8 @@ class ProductSerializer(serializers.ModelSerializer):
             "description",
             "price",
             "active",
-            "category",        # leitura (nested serializer)
-            "categories_id",   # escrita (lista de IDs)
+            "category",  # leitura (nested serializer)
+            "categories_id",  # escrita (lista de IDs)
         ]
 
     def create(self, validated_data):

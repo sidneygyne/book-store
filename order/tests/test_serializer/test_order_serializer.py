@@ -5,6 +5,7 @@ from product.models.category import Category
 from order.serializers.order_serializer import OrderSerializer
 from django.contrib.auth.models import User
 
+
 @pytest.mark.django_db
 def test_order_serializer_total():
     user = User.objects.create_user(username="sidney", password="123456")

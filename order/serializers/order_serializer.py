@@ -6,8 +6,7 @@ from product.models.product import Product
 class OrderSerializer(serializers.ModelSerializer):
     # aceita lista de IDs de produtos no POST/PUT
     product = serializers.PrimaryKeyRelatedField(
-        many=True,
-        queryset=Product.objects.all()
+        many=True, queryset=Product.objects.all()
     )
     # calcula o total dinamicamente
     total = serializers.SerializerMethodField()
