@@ -8,6 +8,7 @@ class Category(models.Model):
     active = models.BooleanField(default=True)
 
     class Meta:
+        app_label = "product"
         ordering = ["id"]
 
     def __unicode__(self):

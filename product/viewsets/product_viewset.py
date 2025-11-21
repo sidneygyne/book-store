@@ -5,6 +5,7 @@ from product.serializers.product_serializer import ProductSerializer
 
 
 class ProductViewSet(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]  # público
     serializer_class = ProductSerializer
     queryset = Product.objects.all().order_by("id")
-    permission_classes = [AllowAny]  # público
+    
