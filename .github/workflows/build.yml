@@ -12,6 +12,7 @@ jobs:
     env:
       DJANGO_SETTINGS_MODULE: bookstore.settings
       DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
+      DJANGO_ALLOWED_HOSTS: "localhost 127.0.0.1"
 
     services:
       postgres:
