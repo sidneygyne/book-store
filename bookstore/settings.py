@@ -125,3 +125,7 @@ DEBUG = int(os.environ.get("DEBUG", default=0))
 # For example: 'DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]'
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS", "localhost").split(" ")
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "test-secret-key")
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1',
+'ebac-bookstore-api.herokuapp.com',
+'sidneygyne.pythonanywhere.com']
