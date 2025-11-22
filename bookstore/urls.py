@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
+from bookstore import views
 from order.views import OrderViewSet
 from product.views import ProductViewSet, CategoryViewSet
 from rest_framework.permissions import AllowAny
@@ -42,4 +43,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
     path("api-token-aut/", obtain_auth_token, name="api_token_aut"),
+    path("update_server/", views.update, name="update"),
+    path("hello/", views.hello_world, name="hello_world"),
 ]
